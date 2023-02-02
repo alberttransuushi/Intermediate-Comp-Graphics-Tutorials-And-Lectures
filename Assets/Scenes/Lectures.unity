@@ -835,7 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f08a76fe8c2744ea7d38b03eed6135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_renderMaterial: {fileID: 2100000, guid: 808da056a4e234e46868d80675a4f4d9, type: 2}
+  m_renderMaterial: {fileID: 2100000, guid: 1b6c379f69e2e6949978e0da7d998181, type: 2}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -869,7 +869,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7da107f7a2714584d8f7b00912071c25, type: 3}
   m_Name: 
@@ -877,7 +877,7 @@ MonoBehaviour:
   scaleUpTime: 1
   upTime: 1
   scaleDownTime: 1
-  material: {fileID: 2100000, guid: 808da056a4e234e46868d80675a4f4d9, type: 2}
+  material: {fileID: 2100000, guid: b37f7e61255d5294aaaadbdaa5d8d0dc, type: 2}
   cycle: 0
 --- !u!1001 &1234728944
 PrefabInstance:
