@@ -2,6 +2,7 @@ Shader "Custom/DiffuseWrap"
 {
     Properties{
         _MainTex("Texture", 2D) = "white" {}
+        _Color("Color", Color) = (0,0.5,0.5,0)
     }
         SubShader{
         Tags { "RenderType" = "Opaque" }
@@ -27,6 +28,7 @@ Shader "Custom/DiffuseWrap"
 
         void surf(Input IN, inout SurfaceOutput o) {
             o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb;
+            
         }
         ENDCG
     }

@@ -6,7 +6,7 @@ Shader "Custom/WaterShader"
         _RampTex("Ramp Texture", 2D) = "white" {}
         _RotationSpeed("Rotation Speed", Float) = 2.0
         _RotationDegrees("Rotation Degrees", Float) = 0.0
-        _RimPower("Rim Power", range(0.1, 20.0)) = 20.0
+        _RimPower("Rim Power", range(0.1, 10.0)) = 10.0
         _RimColor("Rim Color", Color) = (0,0.5,0.5,0.0)
     }
         SubShader
@@ -61,10 +61,10 @@ Shader "Custom/WaterShader"
             float4 _RimColor;
             void surf(Input IN, inout SurfaceOutput o)
             {
-                half rim = 1.0 - saturate(dot(normalize(IN.viewDir), o.Normal));
+                half rim = saturate(dot(IN.viewDir, o.Normal));
                 half4 c = tex2D(_MainTex, IN.uv_MainTex);
                 //o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb;
-                o.Emission = c.rgb * pow(rim, _RimPower) * 10;
+                o.Emission = c.rgb * pow(rim, _RimPower) * 20;
                 o.Albedo = c.rgb;
                 o.Alpha = pow(rim, _RimPower);
 
