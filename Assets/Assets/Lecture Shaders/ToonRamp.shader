@@ -13,10 +13,13 @@ Shader "Custom/ToonRamp"
         LOD 200
 
         CGPROGRAM
+// Upgrade NOTE: excluded shader from DX11; has structs without semantics (struct v2f members texcoord)
+        #pragma exclude_renderers d3d11
         #pragma surface surf ToonRamp vertex:vert
 
         sampler2D _MainTex;
         sampler2D _RampTex;
+        float4 _MyData;
 
         float4 LightingToonRamp(SurfaceOutput s, fixed3 lightDir, fixed atten)
         {
@@ -35,11 +38,24 @@ Shader "Custom/ToonRamp"
         {
             float2 uv_MainTex;
             float2 uv_RampTex;
+            float4 _myData;
+        };
+
+        struct appData
+        {
+            float4 vertex : POSITION;
+            float3 normal: NORMAL;
+        };
+        
+        struct v2f {
+            //float3 texcoord;
+            float4 vertex : SV_POSITION;
+            float4 myData : TEXCOORD0;
         };
 
         float _RotationSpeed;
-        void vert(inout appdata_full v) {
-            v.texcoord.xy -= 0.5;
+        v2f vert(inout appData v) {
+            /*v.texcoord.xy -= 0.5;
             float s = sin(_RotationSpeed * _Time);
             float c = cos(_RotationSpeed * _Time);
             float2x2 rotationMatrix = float2x2(c, -s, s, c);
@@ -48,14 +64,28 @@ Shader "Custom/ToonRamp"
             rotationMatrix = rotationMatrix * 2 - 1;
             v.texcoord.xy = mul(v.texcoord.xy, rotationMatrix);
             v.texcoord.xy += 0.5;
+
+            v.texcoord.x = 0.5;
+            v.texcoord.y = 0.5;*/
+
+
+            v2f o;
+
+            //o.vertex = UnityObjectClipToPos(v.vertex);
+            o.myData = float4(1, 0, 0, 1);
+            return o;
         }
     
         void surf (Input IN, inout SurfaceOutput o)
         {
-            half4 c = tex2D(_MainTex, IN.uv_MainTex);
+            //_MyData = IN._myData;
+            //half4 c = tex2D(_MainTex, IN.uv_MainTex);
             //o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb;
-            o.Albedo = c.rgb;
-            o.Alpha = c.a;
+            //o.Albedo = c.rgb;
+            //o.Alpha = c.a;
+
+            //o.Albedo = _MyData;
+            o.Albedo = float4(0.05, 1.0, 0.0, 1.0);
 
         }
         ENDCG
