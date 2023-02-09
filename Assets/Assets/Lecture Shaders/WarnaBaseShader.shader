@@ -64,7 +64,7 @@ Shader "Custom/WarnaBaseShader"
                     wp.xyz = floor(wp.xyz * _GeoRes) / _GeoRes;
                     
                     float4 sp = mul(UNITY_MATRIX_P, wp);
-                    (v.vertex).xyzw = sp;
+                    v.texcoord.xyw = sp;
 
                     float2 uv = TRANSFORM_TEX(v.texcoord, _MainTex);
                     o.rez = float3(uv * sp.w, sp.w);

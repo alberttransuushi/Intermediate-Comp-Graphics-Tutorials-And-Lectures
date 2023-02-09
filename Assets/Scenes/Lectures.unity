@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 7ae48c91a7d7c4d45b033395354be5ff, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4552f39c7692fd5458b868411172042e, type: 2}
+      objectReference: {fileID: 2100000, guid: 9e7eb6cad7c7aff46ad64a846222d115, type: 2}
     - target: {fileID: 919132149155446097, guid: 7ae48c91a7d7c4d45b033395354be5ff, type: 3}
       propertyPath: m_Name
       value: ElGun
@@ -380,7 +380,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4552f39c7692fd5458b868411172042e, type: 2}
+  - {fileID: 2100000, guid: 181e314b28b06514fa16c4d1752a07ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1769,7 +1769,7 @@ PrefabInstance:
     - target: {fileID: 4823740744002724038, guid: 6e988d7af958f4944a63a408413a9d6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f5c59587f969c0542b7651c096253675, type: 2}
+      objectReference: {fileID: 2100000, guid: 181e314b28b06514fa16c4d1752a07ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e988d7af958f4944a63a408413a9d6b, type: 3}
 --- !u!1001 &4823740744610701003

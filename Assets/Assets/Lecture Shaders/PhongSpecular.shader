@@ -1,4 +1,4 @@
-Shader "Custom/BlinnPhong"
+Shader "Custom/PhongSpecular"
 {
     Properties{
           _Color("Color", Color) = (1.0,1.0,1.0)
