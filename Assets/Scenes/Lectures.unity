@@ -136,15 +136,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ad87ef818541bdc4bb42e01a8711dacb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.36
+      value: -1.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ad87ef818541bdc4bb42e01a8711dacb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ad87ef818541bdc4bb42e01a8711dacb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.91
+      value: -3.37
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ad87ef818541bdc4bb42e01a8711dacb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -418,7 +418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 429512144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6.99}
+  m_LocalPosition: {x: 0, y: 0, z: -6.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -790,7 +790,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -861,7 +861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_pixelateMaterial: {fileID: 2100000, guid: a12389002571fa54e921c8673533135a, type: 2}
-  pixelDensity: 260
+  pixelDensity: 250
 --- !u!114 &963194232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -878,7 +878,7 @@ MonoBehaviour:
   upTime: 1
   scaleDownTime: 1
   material: {fileID: 2100000, guid: 808da056a4e234e46868d80675a4f4d9, type: 2}
-  cycle: 1
+  cycle: 0
 --- !u!1001 &1234728944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1051,7 +1051,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243704181}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9.31}
+  m_LocalPosition: {x: 0, y: 0, z: 19.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1423,7 +1423,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: ad87ef818541bdc4bb42e01a8711dacb, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: addaaaa742f5daa488303a11e03638b9, type: 2}
+      objectReference: {fileID: 2100000, guid: 05239372e2e918c4aa134a1aaefc202d, type: 2}
     - target: {fileID: 919132149155446097, guid: ad87ef818541bdc4bb42e01a8711dacb, type: 3}
       propertyPath: m_Name
       value: lapp_coin

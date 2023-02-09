@@ -1,72 +1,63 @@
 Shader "Custom/BlendMap"
 
     {
-        Properties
-        {
-            _MainTex("Texture", 2D) = "white" {}
-            _Border("BorderSetting",Range(0,1000)) = 100
-            _KeyColor("Key Color", Color) = (0,1,0)
-            _Near("Near", Range(0, 2)) = 0.01
+        Properties{
+            _TileTextureR("TileTexture R (RGB)", 2D) = "w$$anonymous$$te" {}
+            _TileTextureG("TileTexture G (RGB)", 2D) = "w$$anonymous$$te" {}
+            _TileTextureB("TileTexture B (RGB)", 2D) = "w$$anonymous$$te" {}
+            _TileTextureA("TileTexture A (RGB)", 2D) = "w$$anonymous$$te" {}
+            _RedColor("Red", Color) = (1,1,1,1)
+            _BlueColor("Blue", Color) = (1,1,1,1)
+            _GreenColor("Green", Color) = (1,1,1,1)
+            _AlphaColor("Alpha", Color) = (1,1,1,1)
+            _BlendTex("Blend (RGB)", 2D) = "red" {}
         }
-            SubShader
-            {
-                Tags { "RenderType" = "Opaque" }
-                LOD 100
-                Cull off
-                Pass
+        
+            SubShader{
+            Tags { "RenderType" = "Opaque" }
+            LOD 200
+
+                CGPROGRAM
+                // Physically based Standard lighting model, and enable shadows on all light types
+                #pragma surface surf Standard fullforwardshadows
+
+                // Use shader model 3.0 target, to get nicer looking lighting
+                #pragma target 3.0
+
+                sampler2D _TileTextureR;
+                sampler2D _TileTextureG;
+                sampler2D _TileTextureB;
+                sampler2D _TileTextureA;
+                sampler2D _BlendTex;
+                fixed4 _RedColor;
+                fixed4 _BlueColor;
+                fixed4 _GreenColor;
+                fixed4 _AlphaColor;
+
+                struct Input {
+                    float2 uv_TileTextureR;
+                    float2 uv_TileTextureA;
+                    float2 uv_BlendTex;
+                };
+
+
+
+                void surf(Input IN, inout SurfaceOutputStandard o)
                 {
-                    CGPROGRAM
-                    #pragma vertex vert
-                    #pragma fragment frag
-                    // make fog work
-                    #pragma multi_compile_fog
+                    fixed4 blend = tex2D(_BlendTex, IN.uv_BlendTex);
 
-                    #include "UnityCG.cginc"
-                    struct appdata
-                    {
-                        float4 vertex : POSITION;
-                        float2 uv : TEXCOORD0;
-                    };
-                    struct v2f
-                    {
-                        float2 uv : TEXCOORD0;
-                        UNITY_FOG_COORDS(1)
-                        float4 vertex : SV_POSITION;
-                    };
-                    sampler2D _MainTex;
-                    float4 _MainTex_ST;
-                    half _Border;
-                    fixed4 _KeyColor;
-                    half _Near;
-                    fixed2 bound(fixed2 st, float i)
-                    {
-                        fixed2 p = floor(st) + i;
-                        return p;
-                    }
+                    //blendmaps with textures
+                    fixed4 c =
+                    tex2D(_TileTextureR, IN.uv_TileTextureR) * blend.r +
+                    tex2D(_TileTextureG, IN.uv_TileTextureR) * blend.g +
+                    tex2D(_TileTextureB, IN.uv_TileTextureR) * blend.b +
+                    tex2D(_TileTextureA, IN.uv_TileTextureA) * abs(1 - blend.a);
 
-                    v2f vert(appdata v)
-                    {
-                        v2f o;
-                        o.vertex = UnityObjectToClipPos(v.vertex);
-                        o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                        UNITY_TRANSFER_FOG(o,o.vertex);
-                        return o;
-                    }
-
-                    fixed4 frag(v2f i) : SV_Target
-                    {
-                        // sample the texture
-                        fixed4 col = tex2D(_MainTex, i.uv);
-                        // Chroma Key
-                        fixed4 c1 = tex2D(_MainTex, bound(i.uv * _Border, 1) / _Border);
-                        clip(distance(_KeyColor, c1) - _Near);
-                        fixed4 c2 = tex2D(_MainTex, bound(i.uv * _Border, 0) / _Border);
-                        clip(distance(_KeyColor, c2) - _Near);
-                        // apply fog
-                        UNITY_APPLY_FOG(i.fogCoord, col);
-                        return col;
+                    //blendmaps with color
+                    //fixed4 c = _RedColor * blend.r + _BlueColor * blend.b + _GreenColor * blend.g + _AlphaColor * abs(1 - blend.a);
+                    o.Albedo = c.rgb;
                 }
-                ENDCG
-                }
-            }
+        ENDCG
     }
+        FallBack "Diffuse"
+}
