@@ -177,7 +177,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: ad87ef818541bdc4bb42e01a8711dacb, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f5c59587f969c0542b7651c096253675, type: 2}
+      objectReference: {fileID: 2100000, guid: 4552f39c7692fd5458b868411172042e, type: 2}
     - target: {fileID: 919132149155446097, guid: ad87ef818541bdc4bb42e01a8711dacb, type: 3}
       propertyPath: m_Name
       value: lapp_coin (1)
@@ -1191,7 +1191,7 @@ MonoBehaviour:
   cycleTime: 1
   texName: _MainTex
   x: 0
-  y: 1
+  y: 0
 --- !u!64 &1442991517
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1226,7 +1226,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 181e314b28b06514fa16c4d1752a07ce, type: 2}
+  - {fileID: 2100000, guid: 4552f39c7692fd5458b868411172042e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
