@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 7ae48c91a7d7c4d45b033395354be5ff, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: bce45be73fe39c4408d180914e56a52b, type: 2}
+      objectReference: {fileID: 2100000, guid: 4552f39c7692fd5458b868411172042e, type: 2}
     - target: {fileID: 919132149155446097, guid: 7ae48c91a7d7c4d45b033395354be5ff, type: 3}
       propertyPath: m_Name
       value: ElGun
@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f06f132d5bd954594ea02803c90205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cycleTime: 1
+  cycleTime: 0.1
   texName: _MainTex
   x: 0
   y: 0
@@ -1594,7 +1594,7 @@ PrefabInstance:
     - target: {fileID: 4823740744002724038, guid: 6e988d7af958f4944a63a408413a9d6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: bce45be73fe39c4408d180914e56a52b, type: 2}
+      objectReference: {fileID: 2100000, guid: 4552f39c7692fd5458b868411172042e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e988d7af958f4944a63a408413a9d6b, type: 3}
 --- !u!1 &1946501723
