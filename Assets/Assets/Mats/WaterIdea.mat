@@ -73,7 +73,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RimPower: 1.36
+    - _RimPower: 0.73
     - _RotationDegrees: 10
     - _RotationSpeed: 10
     - _SmoothnessTextureChannel: 0
