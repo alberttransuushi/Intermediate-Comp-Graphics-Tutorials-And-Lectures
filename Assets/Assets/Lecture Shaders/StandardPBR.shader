@@ -12,22 +12,26 @@ Shader "Custom/StandardPBR"
             "Queue" = "Geometry" 
         }
         CGPROGRAM
-        #pragma surface surf Standard 
+        #pragma surface surf Standard
 
         sampler2D _MetallicTex;
         half _Metallic;
         fixed4 _Color;
+        float4 _RimColor;
+        float _RimPower;
 
         struct Input
         {
             float2 uv_MetallicTex;
+            float3 viewDir;
         };
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
+            half4 c = tex2D(_MetallicTex, IN.uv_MetallicTex);
             o.Albedo = _Color.rgb;
-            o.Smoothness = tex2D(_MetallicTex, IN.uv_MetallicTex).r;
-            o.Metallic = _Metallic;
+            o.Smoothness = c.rgb;
+            //o.Metallic = _Metallic;
         }
         ENDCG
     }

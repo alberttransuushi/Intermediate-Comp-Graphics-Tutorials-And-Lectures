@@ -53,7 +53,7 @@ Shader "Custom/WaterShader"
                 rotationMatrix *= 0.5;
                 rotationMatrix += 0.5;
                 rotationMatrix = rotationMatrix * 2 - 1;
-                v.texcoord.xy = mul(v.texcoord.xy, rotationMatrix);
+                v.texcoord.xy = mul(v.vertex.xy, rotationMatrix);
                 v.texcoord.xy += 0.5;
             }
 

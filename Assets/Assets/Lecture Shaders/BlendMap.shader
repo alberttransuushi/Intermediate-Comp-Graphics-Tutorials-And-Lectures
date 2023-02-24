@@ -6,11 +6,10 @@ Shader "Custom/BlendMap"
             _TileTextureG("TileTexture G (RGB)", 2D) = "w$$anonymous$$te" {}
             _TileTextureB("TileTexture B (RGB)", 2D) = "w$$anonymous$$te" {}
             _TileTextureA("TileTexture A (RGB)", 2D) = "w$$anonymous$$te" {}
-            _RedColor("Red", Color) = (1,1,1,1)
-            _BlueColor("Blue", Color) = (1,1,1,1)
-            _GreenColor("Green", Color) = (1,1,1,1)
-            _AlphaColor("Alpha", Color) = (1,1,1,1)
+            _RampTex("Ramp Texture", 2D) = "white" {}
             _BlendTex("Blend (RGB)", 2D) = "red" {}
+            _RimColor("Rim Color", Color) = (0,0.5,0.5,0)
+            _RimPower("Rim Power", Range(0.5,8.0)) = 3.0
         }
         
             SubShader{
@@ -18,8 +17,7 @@ Shader "Custom/BlendMap"
             LOD 200
 
                 CGPROGRAM
-                // Physically based Standard lighting model, and enable shadows on all light types
-                #pragma surface surf Standard fullforwardshadows
+                #pragma surface surf ToonRamp
 
                 // Use shader model 3.0 target, to get nicer looking lighting
                 #pragma target 3.0
@@ -29,10 +27,24 @@ Shader "Custom/BlendMap"
                 sampler2D _TileTextureB;
                 sampler2D _TileTextureA;
                 sampler2D _BlendTex;
-                fixed4 _RedColor;
-                fixed4 _BlueColor;
-                fixed4 _GreenColor;
-                fixed4 _AlphaColor;
+                sampler2D _RampTex;
+                float4 _RimColor;
+                float _RimPower;
+
+
+                float4 LightingToonRamp(SurfaceOutput s, fixed3 lightDir, fixed atten)
+                {
+                    float diff = dot(s.Normal, lightDir);
+                    float h = diff * 0.5 + 0.5;
+                    float2 rh = h;
+                    float3 ramp = tex2D(_RampTex, rh).rgb;
+
+                    float4 t;
+                    t.rgb = s.Albedo * _LightColor0.rgb * (ramp);
+                    t.a = s.Alpha;
+                    return t;
+                }
+
 
                 struct Input {
                     float2 uv_TileTextureR;
@@ -42,7 +54,7 @@ Shader "Custom/BlendMap"
 
 
 
-                void surf(Input IN, inout SurfaceOutputStandard o)
+                void surf(Input IN, inout SurfaceOutput o)
                 {
                     fixed4 blend = tex2D(_BlendTex, IN.uv_BlendTex);
 
@@ -56,6 +68,9 @@ Shader "Custom/BlendMap"
                     //blendmaps with color
                     //fixed4 c = _RedColor * blend.r + _BlueColor * blend.b + _GreenColor * blend.g + _AlphaColor * abs(1 - blend.a);
                     o.Albedo = c.rgb;
+
+                    half rim = 1 - saturate(dot(normalize(IN.uv_TileTextureR), o.Normal));
+                    o.Emission = _RimColor.rgb * pow(rim, _RimPower) * 1.2;
                 }
         ENDCG
     }

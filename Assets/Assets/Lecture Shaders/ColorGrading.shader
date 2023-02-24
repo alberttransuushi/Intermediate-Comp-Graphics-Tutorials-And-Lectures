@@ -7,7 +7,8 @@ Shader "Custom/ColorGrading"
 	}    
 		
 		SubShader{        
-			// No culling or depth        Cull Off ZWrite Off ZTest Always         
+			// No culling or depth        
+            Cull Off ZWrite Off ZTest Always         
 		Pass
 		{            
 		CGPROGRAM            

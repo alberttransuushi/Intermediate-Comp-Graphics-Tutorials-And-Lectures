@@ -4,6 +4,7 @@ Shader "Custom/VertexIdea"
     {
         _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
+        _ThiccyAmount("Thiccccc", Range(0,10)) = 1
     }
     SubShader
     {
@@ -15,6 +16,7 @@ Shader "Custom/VertexIdea"
         #pragma surface surf Lambert vertex:vert
 
         sampler2D _MainTex;
+        half _ThiccyAmount;
          
 
         struct Input
@@ -24,7 +26,7 @@ Shader "Custom/VertexIdea"
 
         void vert(inout appdata_full v)
         {
-            v.vertex.xyz += v.normal * 1;
+            v.vertex.xyz += v.normal * _ThiccyAmount;
         }
 
 

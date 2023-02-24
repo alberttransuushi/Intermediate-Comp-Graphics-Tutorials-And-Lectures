@@ -1,4 +1,4 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 
 
 
@@ -8,23 +8,27 @@ Shader "Custom/WarnaBaseShader"
     {
         _MainTex("Main Texture", 2D) = "white" {}
         _RampTex("Ramp Texture", 2D) = "white" {}
-        _GeoRes("Geometric Resolution", Float) = 40.0
+        _RimColor("Rim Color", Color) = (0,0.5,0.5,0)
+        _RimPower("Rim Power", Range(0.5,8.0)) = 3.0
+        //_myBump("Bump Texture", 2D) = "bump" {}
+        //_mySlider("Bump Amount", Range(0,10)) = 1
     }
         SubShader
         {
             
-                Tags {"RenderType" = "Opaque"}
-
                 CGPROGRAM
+
 
                 #include "UnityCG.cginc"
 
-                #pragma surface surf ToonRamp vertex:vert
+                #pragma surface surf ToonRamp
 
                 sampler2D _MainTex;
-                float4 _MainTex_ST;
                 sampler2D _RampTex;
-                float _GeoRes;
+                float4 _RimColor;
+                float _RimPower;
+                //sampler2D _myBump;
+                //half _mySlider;
 
 
                 float4 LightingToonRamp(SurfaceOutput s, fixed3 lightDir, fixed atten)
@@ -45,49 +49,25 @@ Shader "Custom/WarnaBaseShader"
                 {
                     float2 uv_MainTex;
                     float2 uv_RampTex;
-                    float2 uv_MainTex_ST;
-                    float2 uv_Tex;
+                    //float2 uv_myBump;
+                    //float2 uv_MainTex_ST;
                     float3 viewDir;
-                    float3 texcoord_MainTex;
+
                 };
 
-
-                struct v2f
-                {
-                    float4 pos : POSITION;
-                    float3 texcoord : TEXCOORD;
-                };
-
-
-                v2f vert (inout appdata_full v, out Input o)
-                {
-                    v2f i;
-                    UNITY_INITIALIZE_OUTPUT(Input, o);
-                  
-                    float4 wp = mul(UNITY_MATRIX_MV, v.vertex);
-                    wp.xyz = floor(wp.xyz * _GeoRes) / _GeoRes;
-                    
-                    float4 sp = mul(UNITY_MATRIX_P, wp);
-                    i.pos = sp;
-
-                    float2 uv = TRANSFORM_TEX(v.texcoord, _MainTex);
-                    i.texcoord = float3(uv * sp.w, sp.w);
-
-                    o.texcoord_MainTex = i.texcoord;
-
-                    return i;
-    
-                }
 
 
                 void surf(Input IN, inout SurfaceOutput o)
                 {
-                    float2 uv = (IN.texcoord_MainTex.xy / IN.texcoord_MainTex.z);
-                    half4 c = tex2D(_MainTex, uv);
-                    o.Albedo = c.rgb;
-
+                    half4 c = tex2D(_MainTex, IN.uv_MainTex);
+                    half rim = 1.0 - saturate(dot(normalize(IN.viewDir), o.Normal));
+                    o.Albedo = c.rgb - _RimColor.rgb * pow(rim, _RimPower) * 3;
+                    //o.Alpha = c.a;
+                    //o.Emission = _RimColor.rgb * pow(rim, _RimPower) * 10;
+                    //o.Normal = UnpackNormal(tex2D(_myBump, IN.uv_myBump));
+                    //o.Normal *= float3(_mySlider, _mySlider, 1);
                 }
-
+            
             
             ENDCG
         }
