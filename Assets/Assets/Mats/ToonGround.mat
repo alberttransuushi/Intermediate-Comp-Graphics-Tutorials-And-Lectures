@@ -7,12 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Toon
+  m_Name: ToonGround
   m_Shader: {fileID: 4800000, guid: 10b321e7d9906204bbc702d384f81098, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -41,8 +41,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a6bd12e8d7f4d174586ba5cd486ba80a, type: 3}
-        m_Scale: {x: 10, y: 10}
+        m_Texture: {fileID: 2800000, guid: f87d24b6e26ed934ba2ba6e3b5cda34e, type: 3}
+        m_Scale: {x: 100, y: 0.1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -72,15 +72,15 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _Outline: 0.15
     - _Parallax: 0.02
-    - _RotationDegrees: 2
-    - _RotationSpeed: 10
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
+    - _Color: {r: 0.7783019, g: 0.8956715, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
