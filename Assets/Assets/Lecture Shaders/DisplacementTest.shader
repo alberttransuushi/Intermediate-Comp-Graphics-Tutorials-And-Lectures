@@ -4,10 +4,11 @@ Shader "Custom/DisplacementTest"
     {
         _Color("Color", Color) = (1,1,1,1)
         _MainTex("Albedo (RGB)", 2D) = "white" {}
-        _RotationSpeed("Rotation Speed", Float) = 2.0
-        _RotationDegrees("Rotation Degrees", Float) = 0.0
         _DisplacementMap("DisMapInYouMouth", 2D) = "black" {}
         _DisplacmentStrength("DisStronkness", Range(0,100)) = 0.5
+        _Amplitude ("Amplitude", Float) = 1
+        _WaveLength("Wave Length", Float) = 1
+        _Speed("Speed", Float) = 1
     }
         SubShader
         {
@@ -25,9 +26,11 @@ Shader "Custom/DisplacementTest"
             sampler2D _MainTex;
             sampler2D _DisplacementMap;
             half _DisplacmentStrength;
-            float _RotationSpeed;
             float4 _MainTex_ST;
             float4 _DisplacmentMap_ST;
+            float _Amplitude;
+            float _WaveLength;
+            float _Speed;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -47,16 +50,11 @@ Shader "Custom/DisplacementTest"
 
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 
-                o.uv.xy -= 0.5;
-                float s = sin(_RotationSpeed * _Time) * 0.4;
-                float c = cos(_RotationSpeed * _Time);
-                float2x2 rotationMatrix = float2x2(c, -s, s, c);
-                rotationMatrix *= 0.5;
-                rotationMatrix += 0.5;
-                rotationMatrix = rotationMatrix * 2 - 1;
-                o.uv.xy = mul(v.vertex.xy, rotationMatrix);
-                v.uv.xy = mul(v.vertex.xy, rotationMatrix);
-                o.uv.xy += 0.5;
+                float3 p = v.vertex.xyz;
+                float k = 2 * UNITY_PI / _WaveLength;
+           
+                p.y = _Amplitude * sin(k * (p.x - _Speed * _Time.y));
+                v.vertex.xyz = p;
 
                 float displacement = tex2Dlod(_DisplacementMap, float4(o.uv, 0, 0)).r;
                 //float displacement = 0;
