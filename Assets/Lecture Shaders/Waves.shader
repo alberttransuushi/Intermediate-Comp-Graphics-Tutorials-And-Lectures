@@ -2,14 +2,17 @@
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
-		_Glossiness ("Smoothness", Range(0,1)) = 0.5
-		_Metallic ("Metallic", Range(0,1)) = 0.0
 		_OutlineColor("Outline Color", Color) = (0,0,0,1)
 		_Outline("Outline Width", Range(0.05, 1)) = 0.005
 		_LitTex("Light Hatch", 2D) = "white" {}
 		_MedTex("Medium Hatch", 2D) = "white" {}
 		_HvyTex("Heavy Hatch", 2D) = "white" {}
 		_Repeat("Repeat Tile", float) = 4
+		_DisplacementStrength("Displancement Strength", Range(0,10)) = 0.5
+		_xOffset("x Offset", Range(-10,10)) = 1
+		_yOffset("y Offset", Range(-10,10)) = 1
+		_zOffset("z Offset", Range(-10,10)) = 1
+		_TimeShift("time shift affect", Range(0,1000)) = 0
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -26,6 +29,11 @@
 		sampler2D _MedTex;
 		sampler2D _HvyTex;
 		fixed _Repeat;
+		half _DisplacementStrength;
+		half _xOffset;
+		half _yOffset;
+		half _zOffset;
+		half _TimeShift;
 
 		struct MySurfaceOutput
 		{
@@ -72,9 +80,14 @@
 		
 
 		void vert(inout appdata_full v) {
-				float phase = _Time * 20.0;
-				float offset = (v.vertex.x + (v.vertex.z * 0.2)) * 0.5;
-				v.vertex.y = sin(phase + offset) * 0.2;
+			float displacement = (sqrt(pow(v.vertex.x + _xOffset, 2) + pow(v.vertex.y + _yOffset, 2) + pow(v.vertex.z + _zOffset, 2)) + _TimeShift * (_Time/30)) % 2;
+			if (displacement < 1) {
+				displacement = 0;
+			}
+			else {
+				displacement = 1;
+			}
+			v.vertex.y = displacement * _DisplacementStrength;
 		}
 
 		void surf (Input IN, inout MySurfaceOutput o) {

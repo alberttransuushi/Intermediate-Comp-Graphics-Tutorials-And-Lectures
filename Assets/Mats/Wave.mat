@@ -41,7 +41,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HvyTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 69e91670b7ef94744940e705ff7ce7d4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LitTex:
@@ -73,6 +73,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _DisplacementStrength: 0.89
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -86,8 +87,12 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _TimeShift: 1000
     - _UVSec: 0
     - _ZWrite: 1
+    - _xOffset: -0.25
+    - _yOffset: 5.75
+    - _zOffset: 1.15
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
