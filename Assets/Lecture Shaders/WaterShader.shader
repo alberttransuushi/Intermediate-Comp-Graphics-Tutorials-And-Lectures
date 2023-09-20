@@ -8,6 +8,7 @@ Shader "Custom/WaterShader"
         _RotationDegrees("Rotation Degrees", Float) = 0.0
         _RimPower("Rim Power", range(0.1, 10.0)) = 100.0
         _RimColor("Rim Color", Color) = (0,0.5,0.5,0.0)
+        _Color("Color", Color) = (0,0.5,0.5,0.0)
     }
         SubShader
         {
@@ -19,10 +20,12 @@ Shader "Custom/WaterShader"
                 ColorMask 0
             }
             CGPROGRAM
-            #pragma surface surf ToonRamp alpha:fade vertex:vert 
+            #pragma surface surf ToonRamp Lambert alpha:fade vertex:vert 
 
             sampler2D _MainTex;
             sampler2D _RampTex;
+            float4 _RimColor;
+            float4 _Color;
 
             float4 LightingToonRamp(SurfaceOutput s, fixed3 lightDir, fixed atten)
             {
@@ -58,13 +61,12 @@ Shader "Custom/WaterShader"
             }
 
             float _RimPower;
-            float4 _RimColor;
             void surf(Input IN, inout SurfaceOutput o)
             {
                 half rim = 1 - (dot(IN.viewDir, o.Normal));
-                half4 c = tex2D(_MainTex, IN.uv_MainTex);
+                half4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
                 //o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb;
-                o.Emission = c.rgb * pow(rim, _RimPower) * 2;
+                o.Emission = c.rgb * pow(rim, _RimPower) * _RimColor;
                 o.Albedo = c.rgb;
                 o.Alpha = pow(rim, _RimPower);
 

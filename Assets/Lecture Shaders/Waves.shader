@@ -2,6 +2,7 @@
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
+		_RampTex ("Toon Shading Tex", 2D) = "white" {}
 		_OutlineColor("Outline Color", Color) = (0,0,0,1)
 		_Outline("Outline Width", Range(0.05, 1)) = 0.005
 		_LitTex("Light Hatch", 2D) = "white" {}

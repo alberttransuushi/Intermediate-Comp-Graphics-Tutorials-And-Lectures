@@ -7,12 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wave
-  m_Shader: {fileID: 4800000, guid: 4f94d2d520e6b4b71bc4b2dfb03f3426, type: 3}
+  m_Name: Phase
+  m_Shader: {fileID: 4800000, guid: cdc5b52f5cc884a49938b148a323e2fa, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -40,20 +40,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _HvyTex:
-        m_Texture: {fileID: 2800000, guid: ed24e5599ab670847bc599f54874e4fc, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _LitTex:
-        m_Texture: {fileID: 2800000, guid: da0b3376a7f37b64b9c65b06a8e91643, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c2d6480d61cebf3409822287ad424c63, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MedTex:
-        m_Texture: {fileID: 2800000, guid: ed24e5599ab670847bc599f54874e4fc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 880cbf0a4d55632469be481503681d6d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -69,7 +57,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RampTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d9e80c3d9877bf0428b4f74ea522d1ba, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -77,7 +65,6 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DisplacementStrength: 0.7
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -85,23 +72,17 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Outline: 0.005
     - _Parallax: 0.02
-    - _Repeat: 10
+    - _RimPower: 2.25
+    - _RotationDegrees: 0
+    - _RotationSpeed: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TimeShift: 1000
     - _UVSec: 0
     - _ZWrite: 1
-    - _xOffset: 10
-    - _yOffset: -10
-    - _zOffset: 10
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0, g: 0.34623837, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _WaveA: {r: 1, g: 0, b: 0.5, a: 10}
-    - _WaveB: {r: 0, g: 1, b: 0.25, a: 20}
-    - _WaveC: {r: 1, g: 1, b: 0.15, a: 10}
+    - _RimColor: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
