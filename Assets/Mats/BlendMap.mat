@@ -117,19 +117,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TileTextureA:
-        m_Texture: {fileID: 2800000, guid: c49915440923cf04b8014d6da6ab280e, type: 3}
+        m_Texture: {fileID: 2800000, guid: e45c66f593399614f9fc8cf30d324dc4, type: 3}
         m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _TileTextureB:
-        m_Texture: {fileID: 2800000, guid: c49915440923cf04b8014d6da6ab280e, type: 3}
+        m_Texture: {fileID: 2800000, guid: e45c66f593399614f9fc8cf30d324dc4, type: 3}
         m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _TileTextureG:
-        m_Texture: {fileID: 2800000, guid: c56fcd8cd7a03fb458ec2bc4b43bd246, type: 3}
+        m_Texture: {fileID: 2800000, guid: 545398cb62932054e8f474d18b251e1d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TileTextureR:
-        m_Texture: {fileID: 2800000, guid: c49915440923cf04b8014d6da6ab280e, type: 3}
+        m_Texture: {fileID: 2800000, guid: e45c66f593399614f9fc8cf30d324dc4, type: 3}
         m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _blend1:
@@ -156,7 +156,7 @@ Material:
     - _Near: 2
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RimPower: 0.5
+    - _RimPower: 8
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -171,5 +171,5 @@ Material:
     - _GreenColor: {r: 1, g: 0, b: 0.019996166, a: 1}
     - _KeyColor: {r: 0.4048233, g: 1, b: 0, a: 1}
     - _RedColor: {r: 0.12549019, g: 0, b: 1, a: 1}
-    - _RimColor: {r: 1, g: 0.55099326, b: 0, a: 0}
+    - _RimColor: {r: 0, g: 0.1621639, b: 0.254717, a: 0}
   m_BuildTextureStacks: []
